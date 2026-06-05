@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>tokomac — iOS Developer</title>
+<meta name="description" content="Japan-based independent iOS developer. 6 apps on the App Store. SwiftUI, Firebase, SwiftData, CloudKit.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&display=swap" rel="stylesheet">
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+:root{--ink:#1a1a18;--ink2:#4a4a46;--ink3:#8a8a84;--paper:#f7f5f0;--paper2:#edeae2;--accent:#2d6a4f;--accent-light:#d8f3dc;--line:rgba(26,26,24,0.1)}
+body{font-family:'DM Sans',sans-serif;background:var(--paper);color:var(--ink);font-size:15px;line-height:1.6}
+.site{max-width:860px;margin:0 auto;padding:0 24px 80px}
+.header{padding:60px 0 40px;border-bottom:1px solid var(--line);margin-bottom:56px;display:flex;justify-content:space-between;align-items:flex-end;flex-wrap:wrap;gap:24px}
+.header-left .name{font-family:'DM Serif Display',serif;font-size:42px;font-weight:400;letter-spacing:-0.5px;line-height:1.1;color:var(--ink);margin-bottom:6px}
+.header-left .role{font-size:16px;color:var(--accent);font-weight:500;margin-bottom:6px}
+.header-left .tagline{font-size:14px;color:var(--ink2);font-weight:300}
+.header-right{display:flex;flex-direction:column;align-items:flex-end;gap:8px}
+.badge-ios{display:inline-flex;align-items:center;gap:6px;background:var(--ink);color:var(--paper);font-size:12px;font-weight:500;padding:5px 12px;border-radius:20px;letter-spacing:0.3px}
+.tech-chips{display:flex;gap:6px;flex-wrap:wrap;justify-content:flex-end}
+.chip{font-size:11px;color:var(--ink3);background:var(--paper2);padding:3px 10px;border-radius:12px;border:1px solid var(--line)}
+.section-label{font-size:11px;font-weight:500;letter-spacing:1.5px;text-transform:uppercase;color:var(--ink3);margin-bottom:24px;display:flex;align-items:center;gap:12px}
+.section-label::after{content:'';flex:1;height:1px;background:var(--line)}
+.about{margin-bottom:64px;display:grid;grid-template-columns:1fr 1fr;gap:32px;align-items:start}
+.about-text{font-size:16px;color:var(--ink2);font-weight:300;line-height:1.75}
+.about-text em{font-style:italic;color:var(--ink)}
+.stats-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.stat-card{background:var(--paper2);border:1px solid var(--line);border-radius:10px;padding:16px}
+.stat-num{font-family:'DM Serif Display',serif;font-size:28px;color:var(--accent);line-height:1;margin-bottom:4px}
+.stat-label{font-size:11px;color:var(--ink3);font-weight:400}
+.apps{margin-bottom:64px}
+.apps-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:16px}
+.app-card{background:var(--paper);border:1px solid var(--line);border-radius:14px;padding:22px;transition:border-color 0.2s,transform 0.2s;position:relative;overflow:hidden}
+.app-card::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:var(--accent);opacity:0;transition:opacity 0.2s}
+.app-card:hover{border-color:rgba(26,26,24,0.2);transform:translateY(-2px)}
+.app-card:hover::before{opacity:1}
+.app-header{display:flex;align-items:flex-start;justify-content:space-between;margin-bottom:12px}
+.app-icon{width:54px;height:54px;border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:24px;flex-shrink:0;overflow:hidden;background:var(--paper2)}
+.app-icon img{width:54px;height:54px;border-radius:12px;display:block}
+.app-store-link{font-size:10px;color:var(--accent);text-decoration:none;font-weight:500;padding:4px 10px;border:1px solid var(--accent);border-radius:12px;display:inline-flex;align-items:center;gap:4px;transition:background 0.15s,color 0.15s;white-space:nowrap}
+.app-store-link:hover{background:var(--accent);color:white}
+.app-name{font-family:'DM Serif Display',serif;font-size:18px;font-weight:400;color:var(--ink);margin-bottom:4px}
+.app-subtitle{font-size:12px;color:var(--ink3);margin-bottom:10px}
+.app-desc{font-size:13px;color:var(--ink2);line-height:1.65;font-weight:300;margin-bottom:14px}
+.app-tags{display:flex;flex-wrap:wrap;gap:5px}
+.app-tag{font-size:10px;color:var(--accent);background:var(--accent-light);padding:2px 8px;border-radius:10px;font-weight:500}
+.skills{margin-bottom:64px}
+.skills-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+.skill-group{background:var(--paper2);border-radius:12px;padding:18px;border:1px solid var(--line)}
+.skill-group-title{font-size:12px;font-weight:500;color:var(--ink);margin-bottom:10px}
+.skill-list{list-style:none}
+.skill-list li{font-size:13px;color:var(--ink2);font-weight:300;padding:3px 0;border-bottom:1px solid var(--line)}
+.skill-list li:last-child{border-bottom:none}
+.contact{border-top:1px solid var(--line);padding-top:40px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:20px}
+.contact-text h3{font-family:'DM Serif Display',serif;font-size:24px;font-weight:400;margin-bottom:6px}
+.contact-text p{font-size:14px;color:var(--ink2);font-weight:300}
+.contact-links{display:flex;gap:12px}
+.contact-link{display:inline-flex;align-items:center;gap:6px;font-size:13px;font-weight:500;color:var(--ink);text-decoration:none;padding:8px 16px;border:1px solid var(--line);border-radius:8px;background:var(--paper);transition:border-color 0.15s,background 0.15s}
+.contact-link:hover{border-color:var(--ink);background:var(--paper2)}
+.contact-link.primary{background:var(--ink);color:var(--paper);border-color:var(--ink)}
+.contact-link.primary:hover{background:var(--accent);border-color:var(--accent)}
+.lang-toggle{position:fixed;top:16px;right:16px;display:flex;background:var(--paper2);border:1px solid var(--line);border-radius:8px;overflow:hidden;z-index:100}
+.lang-btn{padding:6px 12px;border:none;background:transparent;cursor:pointer;font-size:12px;font-family:'DM Sans',sans-serif;color:var(--ink2);transition:background 0.15s}
+.lang-btn.active{background:var(--ink);color:var(--paper)}
+@media(max-width:600px){
+  .about{grid-template-columns:1fr}
+  .skills-grid{grid-template-columns:1fr}
+  .header{flex-direction:column;align-items:flex-start}
+  .header-right{align-items:flex-start}
+  .tech-chips{justify-content:flex-start}
+}
+</style>
+</head>
+<body>
+
+<div class="lang-toggle">
+  <button class="lang-btn active" id="btn-ja" onclick="setLang('ja')">日本語</button>
+  <button class="lang-btn" id="btn-en" onclick="setLang('en')">EN</button>
+</div>
+
+<div class="site">
+
+  <header class="header">
+    <div class="header-left">
+      <div class="name">tokomac</div>
+      <div class="role">iOS Developer</div>
+      <p class="tagline" id="h-tagline">Japan · 個人アプリ開発者 · App Store 6アプリ公開中</p>
+    </div>
+    <div class="header-right">
+      <span class="badge-ios">⌘ App Store Publisher</span>
+      <div class="tech-chips">
+        <span class="chip">SwiftUI</span>
+        <span class="chip">Firebase</span>
+        <span class="chip">SwiftData</span>
+        <span class="chip">CloudKit</span>
+        <span class="chip">MusicKit</span>
+      </div>
+    </div>
+  </header>
+
+  <section class="about" style="margin-bottom:64px">
+    <div>
+      <div class="section-label" id="label-about">About</div>
+      <p class="about-text" id="about-text">日本を拠点とする<em>個人iOSアプリ開発者</em>。SwiftUI・Firebase・SwiftDataを中心に、ユーティリティからソーシャルまで幅広いジャンルのアプリを企画・開発・App Storeリリースまで一人で担っています。日英バイリンガル対応を全アプリに組み込み、グローバルな品質基準を意識した開発を続けています。</p>
+    </div>
+    <div class="stats-grid">
+      <div class="stat-card"><div class="stat-num">6</div><div class="stat-label" id="stat1">App Store 公開アプリ</div></div>
+      <div class="stat-card"><div class="stat-num">全</div><div class="stat-label" id="stat2">日英バイリンガル対応</div></div>
+      <div class="stat-card"><div class="stat-num">iOS<br>16+</div><div class="stat-label" id="stat3">最新SDK対応</div></div>
+      <div class="stat-card"><div class="stat-num">Solo</div><div class="stat-label" id="stat4">企画〜リリースまで一人</div></div>
+    </div>
+  </section>
+
+  <section class="apps">
+    <div class="section-label" id="label-apps">Apps</div>
+    <div class="apps-grid">
+
+      <div class="app-card" data-appid="1635696162">
+        <div class="app-header">
+          <div class="app-icon"><span class="placeholder">📻</span></div>
+          <a class="app-store-link" href="https://apps.apple.com/us/app/chanpla/id1635696162" target="_blank">▲ App Store</a>
+        </div>
+        <div class="app-name">ChanPla</div>
+        <div class="app-subtitle" id="sub-chanpla">YouTube動画共有・チャット</div>
+        <div class="app-desc" id="desc-chanpla">YouTubeのお気に入り動画を友達と共有し、リアルタイムチャットで語り合えるソーシャルアプリ。Apple Sign In、プッシュ通知、ブロック機能も完備。</div>
+        <div class="app-tags"><span class="app-tag">SwiftUI</span><span class="app-tag">Firebase</span><span class="app-tag">YouTube API</span></div>
+      </div>
+
+      <div class="app-card" data-appid="1621993978">
+        <div class="app-header">
+          <div class="app-icon"><span class="placeholder">📡</span></div>
+          <a class="app-store-link" href="https://apps.apple.com/us/app/mybeaconer/id1621993978" target="_blank">▲ App Store</a>
+        </div>
+        <div class="app-name">MyBeaconer</div>
+        <div class="app-subtitle" id="sub-beacon">iBeacon 開発ツール</div>
+        <div class="app-desc" id="desc-beacon">iBeaconの送受信テスト・デバッグに特化した開発者向けツール。QRコードで設定共有、信号強度グラフ、受信ログ記録を搭載。CoreBluetooth + CoreLocation活用。</div>
+        <div class="app-tags"><span class="app-tag">CoreBluetooth</span><span class="app-tag">CoreLocation</span><span class="app-tag">Realm</span></div>
+      </div>
+
+      <div class="app-card" data-appid="6755823086">
+        <div class="app-header">
+          <div class="app-icon"><span class="placeholder">🧭</span></div>
+          <a class="app-store-link" href="https://apps.apple.com/us/app/eho-finder/id6755823086" target="_blank">▲ App Store</a>
+        </div>
+        <div class="app-name">Eho Finder</div>
+        <div class="app-subtitle" id="sub-eho">金羅針 ／ 恵方コンパス</div>
+        <div class="app-desc" id="desc-eho">日本の伝統文化「恵方」をリアルタイムで表示するコンパスアプリ。恵方の方角を向くと画面が金色に変化し、桜吹雪のアニメーションが舞う。iPhone・iPad対応。</div>
+        <div class="app-tags"><span class="app-tag">SwiftUI</span><span class="app-tag">CoreLocation</span></div>
+      </div>
+
+      <div class="app-card" data-appid="6758654572">
+        <div class="app-header">
+          <div class="app-icon"><span class="placeholder">📺</span></div>
+          <a class="app-store-link" href="https://apps.apple.com/us/app/MyTubeSync/id6758654572" target="_blank">▲ App Store</a>
+        </div>
+        <div class="app-name">MyTubeSync</div>
+        <div class="app-subtitle" id="sub-tube">YouTube管理 + iCloud同期</div>
+        <div class="app-desc" id="desc-tube">YouTubeの動画検索・お気に入り管理をiCloudで複数デバイス間同期。カテゴリ管理、視聴履歴、チャンネル登録機能を搭載。SwiftData + CloudKit採用。</div>
+        <div class="app-tags"><span class="app-tag">SwiftData</span><span class="app-tag">CloudKit</span><span class="app-tag">YouTube API</span></div>
+      </div>
+
+      <div class="app-card" data-appid="6757920032">
+        <div class="app-header">
+          <div class="app-icon"><span class="placeholder">🎵</span></div>
+          <a class="app-store-link" href="https://apps.apple.com/us/app/Resumix/id6757920032" target="_blank">▲ App Store</a>
+        </div>
+        <div class="app-name">Resumix</div>
+        <div class="app-subtitle" id="sub-resumix">Apple Music ライブラリ管理</div>
+        <div class="app-desc" id="desc-resumix">Apple Musicライブラリを賢く管理。スマートプレイリスト（聴きかけ曲を自動抽出）、再生統計、トップアーティストランキング、継続再生機能を提供。</div>
+        <div class="app-tags"><span class="app-tag">MusicKit</span><span class="app-tag">SwiftData</span><span class="app-tag">SwiftUI</span></div>
+      </div>
+
+      <div class="app-card" data-appid="6756536502">
+        <div class="app-header">
+          <div class="app-icon"><span class="placeholder">✅</span></div>
+          <a class="app-store-link" href="https://apps.apple.com/us/app/Tsuzuku/id6756536502" target="_blank">▲ App Store</a>
+        </div>
+        <div class="app-name">Tsuzuku</div>
+        <div class="app-subtitle" id="sub-tsuzuku">習慣トラッキング</div>
+        <div class="app-desc" id="desc-tsuzuku">「続ける」力を育てるシンプルな習慣管理アプリ。ストリーク記録、バッジ、ウィジェット、iCloud同期、6テーマのカスタマイズ。WidgetKit + CloudKit採用。</div>
+        <div class="app-tags"><span class="app-tag">WidgetKit</span><span class="app-tag">CloudKit</span><span class="app-tag">SwiftData</span></div>
+      </div>
+
+    </div>
+  </section>
+
+  <section class="skills">
+    <div class="section-label" id="label-skills">Skills</div>
+    <div class="skills-grid">
+      <div class="skill-group">
+        <div class="skill-group-title">iOS Development</div>
+        <ul class="skill-list">
+          <li>Swift / SwiftUI</li>
+          <li>SwiftData / CoreData</li>
+          <li>WidgetKit / AppIntents</li>
+          <li>CoreLocation / CoreBluetooth</li>
+          <li>MusicKit</li>
+        </ul>
+      </div>
+      <div class="skill-group">
+        <div class="skill-group-title">Backend & Cloud</div>
+        <ul class="skill-list">
+          <li>Firebase Auth / Firestore</li>
+          <li>Firebase Storage / Messaging</li>
+          <li>CloudKit / iCloud Sync</li>
+          <li>YouTube Data API v3</li>
+          <li>APNs / FCM</li>
+        </ul>
+      </div>
+      <div class="skill-group">
+        <div class="skill-group-title">Workflow & Design</div>
+        <ul class="skill-list">
+          <li>App Store Connect</li>
+          <li>Xcode / Claude Code</li>
+          <li>AI活用開発（Claude）</li>
+          <li>App Icon Design</li>
+          <li>JP / EN Localization</li>
+          <li>GitHub</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section class="contact">
+    <div class="contact-text">
+      <h3 id="contact-title">お問い合わせ</h3>
+      <p id="contact-sub">リモートワーク・業務委託のご相談、お気軽にどうぞ</p>
+    </div>
+    <div class="contact-links">
+      <a class="contact-link" href="https://github.com/tokomac" target="_blank">GitHub</a>
+      <a class="contact-link primary" href="mailto:tokomatokomac@gmail.com"><span id="contact-btn">メールを送る</span></a>
+    </div>
+  </section>
+
+</div>
+
+<script>
+async function loadAppIcons() {
+  const cards = document.querySelectorAll('.app-card[data-appid]');
+  const ids = Array.from(cards).map(c => c.dataset.appid).join(',');
+  try {
+    const res = await fetch(`https://itunes.apple.com/lookup?id=${ids}&country=jp`);
+    const data = await res.json();
+    const iconMap = {};
+    data.results.forEach(r => { iconMap[r.trackId] = r.artworkUrl100; });
+    cards.forEach(card => {
+      const id = card.dataset.appid;
+      const url = iconMap[id];
+      if (url) {
+        const iconDiv = card.querySelector('.app-icon');
+        const hiRes = url.replace('100x100bb', '200x200bb');
+        const img = document.createElement('img');
+        img.src = hiRes;
+        img.alt = 'app icon';
+        img.style.cssText = 'width:54px;height:54px;border-radius:12px;display:block';
+        iconDiv.innerHTML = '';
+        iconDiv.appendChild(img);
+      }
+    });
+  } catch(e) {
+    console.log('Icon load skipped:', e);
+  }
+}
+
+const t={
+  ja:{hTagline:'Japan · 個人アプリ開発者 · App Store 6アプリ公開中',labelAbout:'About',aboutText:'日本を拠点とする<em>個人iOSアプリ開発者</em>。SwiftUI・Firebase・SwiftDataを中心に、ユーティリティからソーシャルまで幅広いジャンルのアプリを企画・開発・App Storeリリースまで一人で担っています。日英バイリンガル対応を全アプリに組み込み、グローバルな品質基準を意識した開発を続けています。',stat1:'App Store 公開アプリ',stat2:'日英バイリンガル対応',stat3:'最新SDK対応',stat4:'企画〜リリースまで一人',labelApps:'Apps',subChanpla:'YouTube動画共有・チャット',descChanpla:'YouTubeのお気に入り動画を友達と共有し、リアルタイムチャットで語り合えるソーシャルアプリ。Apple Sign In、プッシュ通知、ブロック機能も完備。',subBeacon:'iBeacon 開発ツール',descBeacon:'iBeaconの送受信テスト・デバッグに特化した開発者向けツール。QRコードで設定共有、信号強度グラフ、受信ログ記録を搭載。CoreBluetooth + CoreLocation活用。',subEho:'金羅針 ／ 恵方コンパス',descEho:'日本の伝統文化「恵方」をリアルタイムで表示するコンパスアプリ。恵方の方角を向くと画面が金色に変化し、桜吹雪のアニメーションが舞う。iPhone・iPad対応。',subTube:'YouTube管理 + iCloud同期',descTube:'YouTubeの動画検索・お気に入り管理をiCloudで複数デバイス間同期。カテゴリ管理、視聴履歴、チャンネル登録機能を搭載。SwiftData + CloudKit採用。',subResumix:'Apple Music ライブラリ管理',descResumix:'Apple Musicライブラリを賢く管理。スマートプレイリスト（聴きかけ曲を自動抽出）、再生統計、トップアーティストランキング、継続再生機能を提供。',subTsuzuku:'習慣トラッキング',descTsuzuku:'「続ける」力を育てるシンプルな習慣管理アプリ。ストリーク記録、バッジ、ウィジェット、iCloud同期、6テーマのカスタマイズ。WidgetKit + CloudKit採用。',labelSkills:'Skills',contactTitle:'お問い合わせ',contactSub:'リモートワーク・業務委託のご相談、お気軽にどうぞ',contactBtn:'メールを送る'},
+  en:{hTagline:'Japan · Independent iOS App Developer · 6 Apps on the App Store',labelAbout:'About',aboutText:'An <em>independent iOS developer</em> based in Japan, handling everything from concept to App Store release — solo. Specializing in SwiftUI, Firebase, and SwiftData across a wide range of app genres. All apps include full Japanese/English localization.',stat1:'Apps on App Store',stat2:'Bilingual JP / EN',stat3:'Latest SDK support',stat4:'Solo end-to-end',labelApps:'Apps',subChanpla:'YouTube social & chat',descChanpla:'A social app to share favorite YouTube videos with friends and discuss them in real-time chat. Includes Apple Sign In, push notifications, and user blocking.',subBeacon:'iBeacon developer tool',descBeacon:'A professional tool for testing and debugging iBeacon transmission and reception. Features QR config sharing, signal strength charts, and reception logs.',subEho:'Eho compass / 金羅針',descEho:"A compass app displaying Japan's traditional lucky direction in real time. The screen turns golden with cherry blossom animations when facing the right direction.",subTube:'YouTube manager + iCloud sync',descTube:'Search and save favorite YouTube videos, synced across devices via iCloud. Includes categories, watch history, and channel subscriptions. Built with SwiftData + CloudKit.',subResumix:'Apple Music library manager',descResumix:'A smarter way to manage your Apple Music library. Smart playlists auto-extract in-progress tracks, with play stats, top artists, and resume playback.',subTsuzuku:'Habit tracking',descTsuzuku:'A simple, beautiful habit tracker built around the Japanese concept of "continuing." Features streaks, badges, home screen widgets, iCloud sync, and 6 themes.',labelSkills:'Skills',contactTitle:'Get in touch',contactSub:'Open to remote work and contract opportunities',contactBtn:'Send email'}
+};
+
+function setLang(lang){
+  const d=t[lang];
+  document.getElementById('h-tagline').textContent=d.hTagline;
+  document.getElementById('label-about').childNodes[0].textContent=d.labelAbout;
+  document.getElementById('about-text').innerHTML=d.aboutText;
+  document.getElementById('stat1').textContent=d.stat1;
+  document.getElementById('stat2').textContent=d.stat2;
+  document.getElementById('stat3').textContent=d.stat3;
+  document.getElementById('stat4').textContent=d.stat4;
+  document.getElementById('label-apps').childNodes[0].textContent=d.labelApps;
+  document.getElementById('sub-chanpla').textContent=d.subChanpla;
+  document.getElementById('desc-chanpla').textContent=d.descChanpla;
+  document.getElementById('sub-beacon').textContent=d.subBeacon;
+  document.getElementById('desc-beacon').textContent=d.descBeacon;
+  document.getElementById('sub-eho').textContent=d.subEho;
+  document.getElementById('desc-eho').textContent=d.descEho;
+  document.getElementById('sub-tube').textContent=d.subTube;
+  document.getElementById('desc-tube').textContent=d.descTube;
+  document.getElementById('sub-resumix').textContent=d.subResumix;
+  document.getElementById('desc-resumix').textContent=d.descResumix;
+  document.getElementById('sub-tsuzuku').textContent=d.subTsuzuku;
+  document.getElementById('desc-tsuzuku').textContent=d.descTsuzuku;
+  document.getElementById('label-skills').childNodes[0].textContent=d.labelSkills;
+  document.getElementById('contact-title').textContent=d.contactTitle;
+  document.getElementById('contact-sub').textContent=d.contactSub;
+  document.getElementById('contact-btn').textContent=d.contactBtn;
+  document.getElementById('btn-ja').classList.toggle('active',lang==='ja');
+  document.getElementById('btn-en').classList.toggle('active',lang==='en');
+  document.documentElement.lang=lang==='ja'?'ja':'en';
+}
+
+loadAppIcons();
+</script>
+</body>
+</html>
